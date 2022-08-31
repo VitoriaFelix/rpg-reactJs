@@ -1,0 +1,1 @@
+export type PersonagemSides = 'down' | 'left' | 'right' | 'up';

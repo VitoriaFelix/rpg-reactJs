@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Personagem } from './components/Personagem';
+import { useEffect } from 'react';
+import * as C from './App.styles';
+import { usePersonagem } from './hooks/usePersonagem';
+const App = () => {
 
-function App() {
+  const char = usePersonagem('Vitoria');
+  //const char2 = usePersonagem('Luiza');
+
+
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    switch (e.code) {
+      case 'KeyA':
+      case 'ArrowLeft':
+        char.moveLeft();
+        break;
+      case 'KeyW':
+      case 'ArrowUp':
+        char.moveUp();
+        break;
+      case 'KeyD':
+      case 'ArrowRight':
+        char.moveRight();
+        break;
+      case 'KeyS':
+      case 'ArrowDown':
+        char.moveDown();
+
+        break;
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <C.Container>
+      <C.Map>
+        <Personagem x={char.x} y={char.y} side={char.side} name={char.name} />
+
+      </C.Map>
+    </C.Container>
+  )
 }
 
 export default App;
