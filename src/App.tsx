@@ -5,9 +5,7 @@ import { usePersonagem } from './hooks/usePersonagem';
 const App = () => {
 
   const char = usePersonagem('Vitoria');
-  //const char2 = usePersonagem('Luiza');
-
-
+  const char2 = usePersonagem('Luiza');
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -39,8 +37,12 @@ const App = () => {
     <C.Container>
       <C.Map>
         <Personagem x={char.x} y={char.y} side={char.side} name={char.name} />
-
+        <Personagem x={char2.x} y={char2.y} side={char2.side} name={char2.name} />
       </C.Map>
+      <button onClick={() => char2.moveLeft()}>Esquerda</button>
+      <button onClick={() => char2.moveRight()}>Direita</button>
+      <button onClick={() => char2.moveUp()}>Cima</button>
+      <button onClick={() => char2.moveDown()}>Baixo</button>
     </C.Container>
   )
 }
